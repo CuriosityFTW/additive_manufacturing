@@ -1,0 +1,63 @@
+# SPPARKS Potts tests on generic lattice
+
+#log		 log.ps18
+
+seed		 56789
+
+		 
+app_style	 additive 250000    60  50  20      70   0   10        70   0.05 1.0         4   4   1.0 1
+
+				#  |————————————————————————————————————————
+				#  | nspins		= atoi(arg[1])
+ 				#  |————————————————————————————————————————
+				#  | spotwidth 	= atoi(arg[2]);
+  				#  | melt_tail_length = atoi(arg[3]);
+  				#  | capheight 	= atoi(arg[4]);
+				#  |————————————————————————————————————————
+  				#  | HAZ 	= atoi(arg[5]);
+				#  | StartWeld 	= atoi(arg[6]);
+  				#  | vel 	= atof(arg[7]);
+				#  |————————————————————————————————————————
+  				#  | total_tail_length 	= atoi(arg[8]);
+  				#  | exp_factor 	= atof(arg[9]);
+  				#  | vel_factor 	= atof(arg[10]);
+				#  |————————————————————————————————————————
+  				#  | NumLayers 		= atoi(arg[11]);
+  				#  | NumPasses 		= atoi(arg[12]);
+  				#  | interaction_pct 	= atoi(arg[13]);
+  				#  | direction_switch = atoi(arg[15]); 0 for X&Y, 1 for X-only, 2 for Y-only
+				#  |————————————————————————————————————————
+
+#dimension	 2 
+#lattice	 sq/8n 1.0
+#region		 box block 0 500 0 500 0 1 
+
+dimension	 3
+lattice	 	 sc/26n 1.0
+region		 box block 0 300 0 300 0 200
+
+create_box	 box
+create_sites	 box
+set		 i1 range 1 250000 
+set		 d1 value 0.0
+ 
+sweep		 color
+#sweep		 raster mask yes
+#solve_style     tree
+sector		 no
+
+#solve_style     tree
+#solve_style     group 26 1
+#sector		 yes
+
+diag_style       energy
+
+temperature	 0.0
+
+stats            10.0
+dump             1 text 200.0 dump.additive4.* id i1 x y z
+#diag_style       cluster delt 50.0 stats no logfreq 9 50.0 filename cluster.AM
+
+
+
+run              800
