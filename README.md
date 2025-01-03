@@ -1,8 +1,8 @@
-<h1 align="center">Additive Manufacturing</h1>
+<h1 align="center">Internship project at Pennsylvania State University</h1>
 
 **University:** Pennsylvania State University
 
-**Location:** Pennsylvania, USA
+**Location:** Philadelphia, USA
 
 **Duration:** July 2020 - Sept 2020
 
